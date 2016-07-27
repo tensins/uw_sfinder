@@ -1,0 +1,13 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$cyan: #CAEBF2;
+body {
+	margin:auto;
+	text-align:center;
+	font-family:'Roboto Slab',serif;
+}
+
+#logo{
+	background-color:$cyan;
+}
