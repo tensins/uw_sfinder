@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-	root 'main#home'
-	get 'search' => 'main#search'
+	root 'rooms#home'
+	get 'find' => 'rooms#find'
 end 
