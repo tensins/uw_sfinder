@@ -1,5 +1,5 @@
 # change current term and run'rake db:seed' each new term to update the rooms and schedules
-apikey = ""
+apikey = "3b21abe0bcae9daa1bfdae8baee017db"
 current_term = '1165'
 
 def add_room(room_name,building,classes=[]) # function to add a room into the database
