@@ -24,7 +24,7 @@ all_courses = ((HTTParty.get("https://api.uwaterloo.ca/v2/terms/#{current_term}/
 	key=#{apikey}")).parsed_response)["data"] # get the courses offered for the current term
 i=0 # ***for now work on small amount of data
 all_courses.each do |course| # for each course, find where its held and insert it as a room if unique
-	break if i==5 
+	break if i==0
 	classes = ((HTTParty.get("https://api.uwaterloo.ca/v2/terms/#{current_term}/#{course['subject']}/#{course['catalog_number']}"\
 	"/schedule.json?key=#{apikey}")).parsed_response)["data"] # get the data of all the sections of this particular course
 	
