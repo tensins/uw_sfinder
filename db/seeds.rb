@@ -42,7 +42,7 @@ end
 all_rooms.each do |room| # for each room, want to get its schedule and pass the array as classes
 	schedule = ((HTTParty.get("https://api.uwaterloo.ca/v2/buildings/#{get_building(room)}/#{get_number(room)}/"\
 		"courses.json?key=#{apikey}")).parsed_response)["data"]
-	schedule.map do |cl| # delete all the unwanted attributes of the hash
+	schedule.map do |cl| # delete all the unwanted attributes of the has
 		cl.delete("class_number")
 		cl.delete("title")
 		cl.delete("start_date")
