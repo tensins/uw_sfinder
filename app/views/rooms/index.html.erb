@@ -25,8 +25,8 @@
 					</thead>
 					<tbody>
 						<%room.classes.each do |cl|%>
-							<%if ((Room.is_today? cl,Time.new(2016,7,11,9,0,0,Time.now.utc_offset)) &&
-									(!Room.is_ended? cl,Time.new(2016,7,11,9,0,0,Time.now.utc_offset)))%>
+							<%if ((Room.is_today? cl,Time.now) &&
+									(!Room.is_ended? cl,Time.now))%>
 								<tr>
 									<td><%="#{cl['subject']} #{cl['catalog_number']}"%></td>
 									<td><%=cl['class_number']%></td>
