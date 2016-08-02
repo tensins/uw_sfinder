@@ -1,15 +1,6 @@
-<div class="container">
-	<h1 id="logo" class="jumbotron">UW Sfinder</h1>
-	<form action="find" method="get" accept-charset="UTF-8">
-		<input pattern="[ ]*[a-zA-Z]+[ ]*" type="text" class="input-lg form-control" name="text" id="text" placeholder="Enter a building eg. MC"></input>
+<div id="main">	
+	<h1 class="col-md-12" id="logo">UW Sfinder</h1>
+	<form  id="search_bar" action="find" method="get" accept-charset="UTF-8">
+		<input pattern="[ ]*[a-zA-Z]+[ ]*" type="text" class="input-lg form-control" name="building" id="text" placeholder="Enter a building eg. MC"></input>
 	</form>
-	<div>
-		<div class="list-group">
-			<% @all_rooms.each do |room|%>
-				<a href="#" class="list-group-item">
-					<%=room.room_name%>
-				</a>
-			<% end %>
-		</div>
-	</div>
 </div>

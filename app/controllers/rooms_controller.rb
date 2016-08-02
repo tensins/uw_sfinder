@@ -1,21 +1,25 @@
 class RoomsController < ApplicationController
-  # the index action
   def home
-  	@all_rooms = []
   end
 
   # find all empty rooms in the building submitted in the form
   def find
-  	@building = params[:text].split(' ')[0].upcase # remove leading and trail spaces
+  	@building = params[:building].split(' ')[0].upcase # remove leading and trail spaces
     
     @all_rooms = find_all_by("building",@building)
    	@all_rooms.each do |room|
-   		@all_rooms.delete(room) if !(room.is_vacant?) # delete rooms that aren't vacant
+   		@all_rooms.delete(room) if !(room.is_vacant?(Time.new(2016,7,11,9,0,0,Time.now.utc_offset))) # delete rooms that aren't vacant
     end
-  	render 'home'
+    @all_rooms = sort_by_time(@all_rooms) # sort the table according to start times
+  	render 'index'
   end
 
-  def show # show a specific room that's been clicked
+  # display all rooms
+  def index
+  	@all_rooms = []
+  end
+
+  def show
 
   end
 

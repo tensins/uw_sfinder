@@ -5,9 +5,24 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js" 
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous">
+	</script>
 </head>
 <body>
-	<%= yield %>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<%= render 'layouts/left_header'%>
+			</div>
+			<div class="col-md-8">	
+				<%= yield %>
+			</div>
+			<div class="col-md-2">
+				<%= render 'layouts/right_header'%>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

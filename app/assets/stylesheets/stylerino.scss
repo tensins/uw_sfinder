@@ -1,13 +1,41 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$cyan: #CAEBF2;
+$eggshell: #f5f5f5;
+$lightblue: #8eaebd;
+$hipster: #b3c2bf;
 body {
 	margin:auto;
 	text-align:center;
-	font-family:'Roboto Slab',serif;
+	font-family: 'Quicksand', sans-serif;
+	background-color:$eggshell;
 }
 
-#logo{
-	background-color:$cyan;
+#logo {
+	margin:20px;
+	font-size:80px;
+	margin-bottom:75px;
+}	
+
+#main {
+	border-radius:4px;
+}
+
+#about,#author {
+	text-decoration:none;
+}
+
+#about_info,#author_info {
+}
+
+.list-item {
+}
+
+table {
+	background-color:$hipster;
+	font-size:20px;
+	font-weight:bold;
+	td {
+		text-align:left;
+	}
 }

@@ -1,0 +1,44 @@
+<h1 id="logo"><a style="text-decoration:none;color:black;" href=<%=root_path%>>UW Sfinder</a></h1>
+<h1>Currently vacant rooms:</h1>
+<div class="rooms">
+
+	<div class="list-group">
+		<%if @all_rooms.length == 0%>
+			<h2>Sorry, all rooms are occupied at the moment.</h2>
+		<%end%>
+		<%@all_rooms.each do |room|%>
+			<a style="text-align:left;" data-toggle="collapse" data-target=<%=str=room.room_name;str.slice! " ";"#" + "#{str}"%> class="list-group-item list-item">
+				<h2 class="list-group-item-heading"><%=room.room_name%>
+				</h2>
+				<p class="list-group-item-text"></p>
+			</a>
+			<div id=<%=str%> class="collapse">
+				<table class="table table-responsive">
+					<thead>
+						<tr>
+							<th>Course</th>
+							<th>Class number</th>
+							<th>Section</th>
+							<th>Start time</th>
+							<th>End time</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%room.classes.each do |cl|%>
+							<%if ((Room.is_today? cl,Time.new(2016,7,11,9,0,0,Time.now.utc_offset)) &&
+									(!Room.is_ended? cl,Time.new(2016,7,11,9,0,0,Time.now.utc_offset)))%>
+								<tr>
+									<td><%="#{cl['subject']} #{cl['catalog_number']}"%></td>
+									<td><%=cl['class_number']%></td>
+									<td><%=cl['section']%></td>
+									<td><%=cl['start_time']%></td>
+									<td><%=cl['end_time']%></td>
+								</tr>
+							<%end%>
+						<%end%>
+					</tbody>
+				</table>
+			</div>
+		<%end%>
+	</div>
+</div>
