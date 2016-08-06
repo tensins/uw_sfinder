@@ -61,8 +61,7 @@ class Room < ActiveRecord::Base
 		
 		wday_str = wday_str.split('')
 		wday_str.each {|char| wday_array << char}
-		return true if wday_array.include? curr_day # if the current day is in the array return true
-		return false
+		return wday_array.include? curr_day # if the current day is in the array return true
 	end
  
  	# return true if the current date is within the start and end dates
@@ -74,7 +73,6 @@ class Room < ActiveRecord::Base
 		end_date = (class_sched["end_date"] == nil)? Time.new(2016,12,5,23,59,59,curr_time.utc_offset):
 						Time.new(2016,class_sched["end_date"].split("/")[0].to_i,
 							class_sched["end_date"].split("/")[1].to_i,23,59,59,curr_time.utc_offset) # end date of course
-		return false if curr_time.between? start_date,end_date # means the classes have no yet ended
-		return true
+		return !(curr_time.between? start_date,end_date) # means the classes have no yet ended
 	end
 end
