@@ -2,7 +2,6 @@ class Room < ActiveRecord::Base
 	serialize :classes, Array # enforce an array as database entry
 	validates :room_name, presence: true, uniqueness: true
 	validates :building, presence: true
-
 	def is_vacant?(curr_time) # determine if the room is currently vacant (meaning no class is currently being held in there)
 		curr_hour = curr_time.hour
 		curr_min = curr_time.min
@@ -35,8 +34,7 @@ class Room < ActiveRecord::Base
 			0,curr_time.utc_offset)
 		end_time = Time.new(curr_time.year,curr_time.month,curr_time.day,end_hour,end_min,
 			0,curr_time.utc_offset)
-		return true if curr_time.between? start_time,end_time
-		return false
+		return curr_time.between? start_time,end_time
 	end
 
 	# returns true if the class occurs today
@@ -70,10 +68,10 @@ class Room < ActiveRecord::Base
  	# return true if the current date is within the start and end dates
 	def Room.is_ended?(class_sched,curr_time)
 		# ** should update these values each new term **
-		start_date = (class_sched["start_date"] == nil)? Time.new(2016,5,2,0,0,0,curr_time.utc_offset):
+		start_date = (class_sched["start_date"] == nil)? Time.new(2016,9,8,0,0,0,curr_time.utc_offset):
 						Time.new(2016,class_sched["start_date"].split("/")[0].to_i,
 							class_sched["start_date"].split("/")[1].to_i,0,0,0,curr_time.utc_offset) #start date of course
-		end_date = (class_sched["end_date"] == nil)? Time.new(2016,7,26,23,59,59,curr_time.utc_offset):
+		end_date = (class_sched["end_date"] == nil)? Time.new(2016,12,5,23,59,59,curr_time.utc_offset):
 						Time.new(2016,class_sched["end_date"].split("/")[0].to_i,
 							class_sched["end_date"].split("/")[1].to_i,23,59,59,curr_time.utc_offset) # end date of course
 		return false if curr_time.between? start_date,end_date # means the classes have no yet ended

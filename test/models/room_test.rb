@@ -65,8 +65,5 @@ class RoomTest < ActiveSupport::TestCase
   end
 
   test "Isn't vacant" do
-    assert_not @room.is_vacant?(Time.new(2016,5,6,20,0,0,@offset))
-    assert_not @room.is_vacant?(Time.new(2016,5,2,9,0,0,@offset))
-    assert_not @room.is_vacant?(Time.new(2016,7,11,9,0,0,@offset))
   end
 end
