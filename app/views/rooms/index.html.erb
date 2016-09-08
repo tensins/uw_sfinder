@@ -6,7 +6,7 @@
 
 <div class="rooms">
 	<% if @disp%>
-		<h1>Currently vacant rooms in <%=@building%>:</h1>
+		<h1>Currently vacant rooms in <%=@building%> (<%=@all_rooms.length%>):</h1>
 		<div class="list-group">
 			<%if @all_rooms.length == 0%>
 				<h2>Sorry, all rooms are occupied at the moment.</h2>

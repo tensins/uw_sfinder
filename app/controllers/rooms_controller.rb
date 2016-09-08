@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
     
     @all_rooms = find_all_by("building",@building)
    	@all_rooms.each do |room|
-   		@all_rooms.delete(room) if !(room.is_vacant?(Time.new(2016,5,24,8,29,59,@offset))) # delete rooms that aren't vacant
+   		@all_rooms.delete(room) if !(room.is_vacant?(Time.now)) # delete rooms that aren't vacant
     end
     @all_rooms = sort_by_time(@all_rooms) # sort the table according to start times
     @disp = true
