@@ -21,11 +21,9 @@ end
 # 2. for each course, if the room they're held in is unique in the all_rooms array, insert it
 # 3. for all rooms in the all_rooms array, add them in the database as well as their classes array
 all_rooms = []
-counter = 0
 all_courses = ((HTTParty.get("https://api.uwaterloo.ca/v2/terms/#{current_term}/courses.json?
 	key=#{apikey}")).parsed_response)["data"] # get the courses offered for the current term
 all_courses.each do |course| # for each course, find where its held and insert it as a room if unique
-	break if counter==10
 	classes = ((HTTParty.get("https://api.uwaterloo.ca/v2/terms/#{current_term}/#{course['subject']}/#{course['catalog_number']}"\
 	"/schedule.json?key=#{apikey}")).parsed_response)["data"] # get the data of all the sections of this particular course
 	
@@ -37,7 +35,6 @@ all_courses.each do |course| # for each course, find where its held and insert i
 			all_rooms << room_name if !(all_rooms.include?(room_name))
 		end
 	end
-	counter += 1
 end
 
 all_rooms.each do |room| # for each room, want to get its schedule and pass the array as classes

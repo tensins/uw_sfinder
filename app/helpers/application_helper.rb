@@ -26,4 +26,5 @@ module ApplicationHelper
 			Time.new(2016,1,1,class_2_hour,class_2_min,0,0).to_i
 		end
 	end
+	
 end

@@ -38,33 +38,32 @@ class Room < ActiveRecord::Base
 	end
 
 	# returns true if the class occurs today
+	# CLEAR
 	def Room.is_today?(class_sched,curr_time)
 		curr_day = curr_time.wday
 		case curr_day 
-			when 0; curr_day="Su"
 			when 1; curr_day="M"
 			when 2; curr_day="T"
 			when 3; curr_day="W"
 			when 4; curr_day="Th"
 			when 5; curr_day="F"
-			when 6;	curr_day="S"
 		else; return false
 		end
 
 		wday_array = [] # array of when class occurs
-		wday_str = class_sched["weekdays"]
+		wday_str = class_sched["weekdays"].dup
 		
 		if wday_str.include? "Th"
 			wday_array << "Th"
 			wday_str.slice! "Th"
 		end
-		
 		wday_str = wday_str.split('')
 		wday_str.each {|char| wday_array << char}
 		return wday_array.include? curr_day # if the current day is in the array return true
 	end
  
- 	# return true if the current date is within the start and end dates
+ 	# return false if the current date is within the start and end dates
+ 	# CLEAR
 	def Room.is_ended?(class_sched,curr_time)
 		# ** should update these values each new term **
 		start_date = (class_sched["start_date"] == nil)? Time.new(2016,9,8,0,0,0,curr_time.utc_offset):
