@@ -6,7 +6,7 @@
 
 <div class="rooms">
 	<h1>Currently vacant rooms in <%=@building%> (<%=@all_rooms.length%>):</h1>
-	<h1>Current Time: <%=Time.now.getlocal("-04:00")%></h1>
+	<h1>Current Time: <%=Time.now.getlocal("-04:00").strftime("%I:%M, %m/%d/%Y")%></h1>
 	<div class="list-group">
 		<%if @all_rooms.length == 0%>
 			<h2>Sorry, all rooms are occupied at the moment.</h2>
