@@ -8,9 +8,9 @@ class RoomsController < ApplicationController
     #@all_rooms.each do |room|
      # @all_rooms.delete(room) if !(room.is_vacant? Time.now) # delete rooms that aren't vacant
     #end
-    @all_rooms.delete_if {|room| !room.is_vacant? Time.now.getlocal("-04:00")}
+    @all_rooms.delete_if {|room| !room.is_vacant? Time.now.getlocal("-05:00")}
     @all_rooms = sort_by_time(@all_rooms) # sort the table according to start times
-    @offset = Time.now.getlocal("-04:00").utc_offset
+    @offset = Time.now.getlocal("-05:00").utc_offset
   end
 
   def home
