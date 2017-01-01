@@ -66,7 +66,7 @@ class Room < ActiveRecord::Base
  	# CLEAR
 	def Room.is_ended?(class_sched,curr_time)
 		# ** should update these values each new term **
-		start_date = (class_sched["start_date"] == nil)? Time.new(2016,9,8,0,0,0,curr_time.utc_offset):
+		start_date = (class_sched["start_date"] == nil)? Time.new(2017,1,3,0,0,0,curr_time.utc_offset):
 						Time.new(2016,class_sched["start_date"].split("/")[0].to_i,
 							class_sched["start_date"].split("/")[1].to_i,0,0,0,curr_time.utc_offset) #start date of course
 		end_date = (class_sched["end_date"] == nil)? Time.new(2016,12,5,23,59,59,curr_time.utc_offset):
