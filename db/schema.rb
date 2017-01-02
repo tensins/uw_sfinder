@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20160728035426) do
 
   create_table "rooms", force: :cascade do |t|
     t.string   "room_name"
-    t.text     "classes"
+    t.text     "classes" # array of classes held in this room
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "building"

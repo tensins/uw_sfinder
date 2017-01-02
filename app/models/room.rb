@@ -23,7 +23,7 @@ class Room < ActiveRecord::Base
 						  Room.is_ended?(class_sched,curr_time)) # return false immediately if the class is not today or
 		# the class has already ended for the term
 
-		#now see if the time intersects
+		# now see if the time intersects
 		start_hour = class_sched["start_time"].split(':')[0].to_i 
 		start_min =  class_sched["start_time"].split(':')[1].to_i
 		end_hour = class_sched["end_time"].split(':')[0].to_i
@@ -63,15 +63,16 @@ class Room < ActiveRecord::Base
 	end
  
  	# return false if the current date is within the start and end dates
- 	# CLEAR
 	def Room.is_ended?(class_sched,curr_time)
 		# ** should update these values each new term **
 		start_date = (class_sched["start_date"] == nil)? Time.new(2017,1,3,0,0,0,curr_time.utc_offset):
-						Time.new(2016,class_sched["start_date"].split("/")[0].to_i,
-							class_sched["start_date"].split("/")[1].to_i,0,0,0,curr_time.utc_offset) #start date of course
-		end_date = (class_sched["end_date"] == nil)? Time.new(2016,12,5,23,59,59,curr_time.utc_offset):
-						Time.new(2016,class_sched["end_date"].split("/")[0].to_i,
-							class_sched["end_date"].split("/")[1].to_i,23,59,59,curr_time.utc_offset) # end date of course
-		return !(curr_time.between? start_date,end_date) # means the classes have no yet ended
+						Time.new(2017,class_sched["start_date"].split("/")[0].to_i,
+							class_sched["start_date"].split("/")[1].to_i,0,0,0,curr_time.utc_offset) 
+							#start date of course
+		end_date = (class_sched["end_date"] == nil)? Time.new(2017,4,3,23,59,59,curr_time.utc_offset):
+						Time.new(2017,class_sched["end_date"].split("/")[0].to_i,
+							class_sched["end_date"].split("/")[1].to_i,23,59,59,curr_time.utc_offset) 
+							# end date of course
+		return !(curr_time.between? start_date,end_date) # means the classes have not yet ended
 	end
 end

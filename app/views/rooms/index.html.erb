@@ -3,7 +3,6 @@
 		<input pattern="[ ]*[a-zA-Z]+[0-9]*[ ]*" type="text" class="input-lg form-control" name="building" id="text" placeholder="Enter a building eg. MC" ></input>
 	</form>
 </div>
-<h1><%=Time.now.utc_offset%></h1>
 <div class="rooms">
 	<h1>Currently vacant rooms in <%=@building%> (<%=@all_rooms.length%>):</h1>
 	<h1>Current Time: <%=Time.now.getlocal("-05:00").strftime("%I:%M, %m/%d/%Y")%></h1>
