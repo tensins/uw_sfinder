@@ -2,6 +2,8 @@ class Room < ActiveRecord::Base
 	serialize :classes, Array # enforce an array as database entry
 	validates :room_name, presence: true, uniqueness: true
 	validates :building, presence: true
+	
+	# could have just done 1 sql query
 	def is_vacant?(curr_time) # determine if the room is currently vacant (meaning no class is currently being held in there)
 		curr_hour = curr_time.hour
 		curr_min = curr_time.min
