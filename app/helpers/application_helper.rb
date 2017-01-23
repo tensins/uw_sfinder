@@ -9,10 +9,14 @@ module ApplicationHelper
 		return matched_arr
 	end
 
-	def sort_by_time(all_rooms) # sort the the class array by start times
+	def sort_by_time(all_rooms) # sort the the class array by start times and also sort the rooms by 
+		# their room numbers
 		all_rooms = all_rooms.map do |room|
 			sort_class(room.classes) # returns the sorted the classes of each room
 			room
+		end
+		all_rooms.sort_by! do |room|
+			room[:room_name].split(' ')[1].to_i
 		end
 	end
 
