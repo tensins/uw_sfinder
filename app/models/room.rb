@@ -3,7 +3,6 @@ class Room < ActiveRecord::Base
 	validates :room_name, presence: true, uniqueness: true
 	validates :building, presence: true
 	
-	# could have just done 1 sql query
 	def is_vacant?(curr_time) # determine if the room is currently vacant (meaning no class is currently being held in there)
 		curr_hour = curr_time.hour
 		curr_min = curr_time.min
@@ -67,7 +66,7 @@ class Room < ActiveRecord::Base
  	# return false if the current date is within the start and end dates
 	def Room.is_ended?(class_sched,curr_time)
 		# ** should update these values each new term **
-		start_date = (class_sched["start_date"] == nil)? Time.new(2017,1,3,0,0,0,curr_time.utc_offset):
+		start_date = (class_sched["start_date"] == nil)? Time.new(2017,5,1,0,0,0,curr_time.utc_offset):
 						Time.new(2017,class_sched["start_date"].split("/")[0].to_i,
 							class_sched["start_date"].split("/")[1].to_i,0,0,0,curr_time.utc_offset) 
 							#start date of course

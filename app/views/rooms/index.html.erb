@@ -5,7 +5,7 @@
 </div>
 <div class="rooms">
 	<h1>Currently vacant rooms in <%=@building%> (<%=@all_rooms.length%>):</h1>
-	<h1>Current Time: <%=Time.now.getlocal("-05:00").strftime("%I:%M, %m/%d/%Y")%></h1>
+	<h1>Current Time: <%=Time.now().strftime("%I:%M, %m/%d/%Y")%></h1>
 	<div class="list-group">
 		<%if @all_rooms.length == 0%>
 			<h2>Sorry, all rooms are occupied at the moment.</h2>
@@ -30,7 +30,7 @@
 					</thead>
 					<tbody> <!--Schedule of the room for today-->
 						<%room.classes.each do |cl|%>
-							<%if Room.is_today?(cl,Time.now.getlocal("-05:00")) && !Room.is_ended?(cl, Time.now.getlocal("-05:00"))%>
+							<%if Room.is_today?(cl,Time.now()) && !Room.is_ended?(cl, Time.now())%>
 								<tr>
 									<td><%="#{cl['subject']} #{cl['catalog_number']}"%></td>
 									<td><%=cl['class_number']%></td>

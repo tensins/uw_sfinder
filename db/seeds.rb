@@ -2,7 +2,7 @@
 # also, change the Room.is_today? method's dates
 
 apikey = "3b21abe0bcae9daa1bfdae8baee017db"
-current_term = '1171'
+current_term = '1175'
 
 def add_room(room_name,building,classes=[]) # function to add a room into the database
 	room = Room.new(room_name:room_name,building:building,classes:classes)
