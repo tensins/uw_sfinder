@@ -9,16 +9,9 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-2">
-				<%= render 'layouts/left_header'%>
-			</div>
-			<div class="col-md-8">	
-				<%=render 'layouts/header'%>
-				<%= yield %>
-			</div>
-			<div class="col-md-2">
-			</div>
+		<%=render 'layouts/header'%>
+		<div class="uws">
+			<%= yield %>
 		</div>
 	</div>
 </body>

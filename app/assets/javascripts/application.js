@@ -14,5 +14,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
+//= require typeahead
 //= require_tree .
 //= require bootstrap

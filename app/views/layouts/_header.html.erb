@@ -1,6 +1,11 @@
 <!-- <h1 class="col-md-12"><%= link_to "UW Sfinder", root_path, id:"logo",class:'hvr-grow' %></h1> -->
-<div id="main">	
-	<form  id="search_bar" action="find" method="get" accept-charset="UTF-8">
-		<input pattern="[ ]*[a-zA-Z]+[0-9]*[ ]*" type="text" class="input-lg form-control" name="building" id="text" placeholder="Enter a building eg. MC" ></input>
-	</form>
-</div>
+<nav id="topbar" class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<%= link_to "UW Sfinder", root_path, id:"logo",class:"hvr-grow navbar-brand" %>
+		<form  class="navbar-form navbar-left" id="search_bar" action="find" method="get" accept-charset="UTF-8">
+			<input type="text" class="input-lg form-control" name="building" id="textbar"
+				autocomplete="off" placeholder="Enter a room or building eg. MC, PHY 145">
+			</input>
+		</form>
+	</div>
+</nav>

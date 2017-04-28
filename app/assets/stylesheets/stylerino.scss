@@ -12,12 +12,13 @@ body {
 }
 
 #logo {
-	padding:20px;
-	font-size:80px;
+	font-size:30px;
 	background-color:$hipster;
 	color:black;
-	margin:30px;
 	text-decoration:none;
+	float:left;
+	margin:0;
+	border-radius:18px;
 }	
 
 #main {
@@ -34,6 +35,7 @@ body {
 .list-item {
 }
 
+
 table {
 	background-color:$hipster;
 	font-size:20px;
@@ -41,6 +43,10 @@ table {
 	td {
 		text-align:left;
 	}
+}
+
+.block {
+	display: inline-block;
 }
 
 /* Grow */

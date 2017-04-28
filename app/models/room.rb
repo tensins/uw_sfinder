@@ -70,7 +70,7 @@ class Room < ActiveRecord::Base
 						Time.new(2017,class_sched["start_date"].split("/")[0].to_i,
 							class_sched["start_date"].split("/")[1].to_i,0,0,0,curr_time.utc_offset) 
 							#start date of course
-		end_date = (class_sched["end_date"] == nil)? Time.new(2017,4,3,23,59,59,curr_time.utc_offset):
+		end_date = (class_sched["end_date"] == nil)? Time.new(2017,7,25,23,59,59,curr_time.utc_offset):
 						Time.new(2017,class_sched["end_date"].split("/")[0].to_i,
 							class_sched["end_date"].split("/")[1].to_i,23,59,59,curr_time.utc_offset) 
 							# end date of course
