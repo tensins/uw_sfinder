@@ -12,6 +12,7 @@ class RoomsController < ApplicationController
       @room_name = @building + " " + inp_arr[1]
       @room = Room.find_by(room_name:@room_name)
       @all_rooms << @room unless @room.nil?
+      @all_rooms = sort_by_time(@all_rooms)
     else
       # get all valid rooms in that building
       @all_rooms = find_all_by("building",@building) # get all rooms in building

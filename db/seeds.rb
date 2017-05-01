@@ -1,4 +1,4 @@
-# change current term and run'rake db:seed' each new term to update the rooms and schedules
+# change current term and run 'heroku run rake db:seed' each new term to update the rooms and schedules
 # also, change the Room.is_today? method's dates
 
 apikey = "3b21abe0bcae9daa1bfdae8baee017db"
