@@ -1,7 +1,7 @@
 <div class="rooms">
-	
+	<!-- Probably too much code in the view, fix in the future -->
 	<div class="list-group">
-	<h1><%= Time.now() %></h1>
+		<h1><%= @curr_time %></h1>
 		<% if @home %>
 		<% elsif @all_rooms.empty? %>
 			<h2>Sorry, all rooms are occupied at the moment.</h2>

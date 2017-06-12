@@ -9,13 +9,14 @@ class RoomsController < ApplicationController
     if !@home
       inp_arr = inp.split(' ')
       @all_rooms = []
-      @curr_time = Time.now()
+      @curr_time = Time.now.in_time_zone('Eastern Time (US & Canada)')
       @building = inp_arr[0].upcase # remove leading and trail spaces
       if (inp_arr.length > 1)
         @room_name = @building + " " + inp_arr[1]
         @room = Room.find_by(room_name:@room_name)
         @all_rooms << @room unless @room.nil?
         @all_rooms = sort_by_time(@all_rooms)
+        @building = inp
       else
         # get all valid rooms in that building
         @all_rooms = find_all_by("building",@building) # get all rooms in building

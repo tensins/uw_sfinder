@@ -2,20 +2,24 @@ class Room < ActiveRecord::Base
 	serialize :classes, Array # enforce an array as database entry
 	validates :room_name, presence: true, uniqueness: true
 	validates :building, presence: true
-	
+
 	def is_vacant?(curr_time) # determine if the room is currently vacant (meaning no class is currently being held in there)
 		curr_hour = curr_time.hour
 		curr_min = curr_time.min
 		curr_sec = curr_time.sec
 		earliest_time = Time.new(curr_time.year,curr_time.month,curr_time.day,8,30,0,curr_time.utc_offset)
 		latest_time = Time.new(curr_time.year,curr_time.month,curr_time.day,22,0,0,curr_time.utc_offset)
+		
+		# by doing this we save some computation time (probably not even noticable but still included)
 		return true if !(curr_time.between? earliest_time,latest_time)
-		self.classes.each do |a_class| # determine if the current time coincides with any classes schedule
+		
+		# now check if any classes coincide with the current time
+		self.classes.each do |a_class|
 			return false if Room.time_intersects(a_class,curr_time)
 		end
 		return true
 	end
-
+	
 	# ex. class_sched = {"subject"=>"AFM",...,"weekdays"=>"MWTh","start_time"=>"19:00","end_time"=>"21:50"}
 	# ex. curr_time = Time.now
 	def Room.time_intersects(class_sched,curr_time) # see if the current time intersects with the class schedule
@@ -37,9 +41,7 @@ class Room < ActiveRecord::Base
 			0,curr_time.utc_offset)
 		return curr_time.between? start_time,end_time
 	end
-
 	# returns true if the class occurs today
-	# CLEAR
 	def Room.is_today?(class_sched,curr_time)
 		curr_day = curr_time.wday
 		case curr_day 
