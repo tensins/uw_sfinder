@@ -1,29 +1,28 @@
 class RoomsController < ApplicationController
-
+  include RoomsHelper
   # display all rooms
   def index
-    # get the building passed in
-    inp = params[:building]
-    # @home will be used to determine if user just arriving at home page
-    @home = inp.nil?
-    if !@home
-      inp_arr = inp.split(' ')
-      @all_rooms = []
-      @curr_time = Time.now.in_time_zone('Eastern Time (US & Canada)')
-      @building = inp_arr[0].upcase # remove leading and trail spaces
-      if (inp_arr.length > 1)
-        @room_name = @building + " " + inp_arr[1]
-        @room = Room.find_by(room_name:@room_name)
-        @all_rooms << @room unless @room.nil?
-        @all_rooms = sort_by_time(@all_rooms)
-        @building = inp
-      else
-        # get all valid rooms in that building
-        @all_rooms = find_all_by("building",@building) # get all rooms in building
-        @all_rooms.delete_if {|room| !room.is_vacant? @curr_time}
-        @all_rooms = sort_by_time(@all_rooms) # sort the table according to start times
+    # indicates the building queried in the get request
+    @inp = params[:building].upcase
+    
+    # gets the rooms for this building and as well as if they are vacant or not
+    @curr_time = toronto_time(Time.new(2018,3,9,17,21,0))
+    rooms, @vacancy = get_rooms(@inp, @curr_time)
+    @vacant_rooms = []
+    for i in 0...@vacancy.length
+      if @vacancy[i].nil?
+        next
       end
+      @vacant_rooms.push(@vacancy[i])
     end
+  end
+
+  # action for home page which contains rooms that are curently vacant 
+  # for the longest time
+  def main
+    # fetch all the buildings
+    @buildings = get_buildings()
+    
   end
 
 end

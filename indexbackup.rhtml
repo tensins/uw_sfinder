@@ -1,0 +1,44 @@
+<div class="rooms">
+	<div class="list-group">
+		<% if @home %>
+		<% elsif @all_rooms.empty? %>
+			<h2>Sorry, all rooms are occupied at the moment.</h2>
+		<% else %>
+			<% @all_rooms.each do |room| %>
+				<a  data-toggle="collapse" data-target=
+				<%= str=(room.room_name.split(" ")[0] + room.room_name.split(" ")[1]);"#" + "#{str}" %> class="list-group-item list-item">
+					<span class="list-group-item-heading" style="float:left;font-size:30px;"><%= room.room_name %>
+					</span>
+					<span class="glyphicon glyphicon-chevron-down" style="float:right;font-size:30px;"></span>
+					<div style="clear:both;"></div>
+				</a>
+				<div id=<%=str%> class="collapse">
+					<table class="table table-responsive">
+						<thead>
+							<tr> 
+								<th>Course</th>
+								<th>Class number</th>
+								<th>Section</th>
+								<th>Start time</th>
+								<th>End time</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% room.classes.each do |cl| %>
+								<% if Room.is_today?(cl,@curr_time) && !Room.is_ended?(cl, @curr_time) %>
+									<tr class="table-entry-item">
+										<td><%= "#{cl['subject']} #{cl['catalog_number']}" %></td>
+										<td><%= cl['class_number'] %></td>
+										<td><%= cl['section'] %></td>
+										<td><%= cl['start_time'] %></td>
+										<td><%= cl['end_time'] %></td>
+									</tr>
+								<% end %>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

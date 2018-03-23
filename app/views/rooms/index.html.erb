@@ -1,19 +1,27 @@
 <div class="rooms">
-	<!-- Probably too much code in the view, fix in the future -->
 	<div class="list-group">
-		<% if @home %>
-		<% elsif @all_rooms.empty? %>
-			<h2>Sorry, all rooms are occupied at the moment.</h2>
+		<% if all_nil?(@vacancy) %>
+			<h2>All rooms occupied in <%= @inp %>. Try another building.</h2>
 		<% else %>
-			<h1>Currently vacant rooms in <%= @building %> (<%= @all_rooms.length %>):</h1>
-			<% @all_rooms.each do |room| %>
-				<a  data-toggle="collapse" data-target=
-				<%= str=(room.room_name.split(" ")[0] + room.room_name.split(" ")[1]);"#" + "#{str}" %> class="list-group-item list-item">
-					<span class="list-group-item-heading" style="float:left;font-size:30px;"><%= room.room_name %>
+			<% @vacant_rooms.each do |room| %>
+				<% if room.nil? %>
+					<% next %>
+				<% end %>
+				
+				<a data-toggle="collapse" data-target=
+				<%= str=(room[:room_name].split(" ")[0] + room[:room_name].split(" ")[1]);"#" + "#{str}" %> class="list-group-item">
+
+					<span class="list-group-item-heading" style="float:left;font-size:30px;"><%= room[:room_name] %>
 					</span>
-					<span class="glyphicon glyphicon-chevron-down" style="float:right;font-size:30px;"></span>
+					<% if room[:hours] == -1 %>
+						<span style="float:right;font-size:30px;"><%= "Open for rest of day" %></span>
+					<% else %>
+						<span style="float:right;font-size:30px;">Open for <%= "#{room[:hours]} Hr, #{room[:mins]} mins" %>
+						</span>
+					<% end %>
 					<div style="clear:both;"></div>
 				</a>
+
 				<div id=<%=str%> class="collapse">
 					<table class="table table-responsive">
 						<thead>
@@ -25,9 +33,9 @@
 								<th>End time</th>
 							</tr>
 						</thead>
-						<tbody> <!--Schedule of the room for today-->
-							<% room.classes.each do |cl| %>
-								<% if Room.is_today?(cl,@curr_time) && !Room.is_ended?(cl, @curr_time) %>
+						<tbody>
+							<% room[:classes].each do |cl| %>
+								<% if Room.is_today?(cl, @curr_time)%>
 									<tr class="table-entry-item">
 										<td><%= "#{cl['subject']} #{cl['catalog_number']}" %></td>
 										<td><%= cl['class_number'] %></td>

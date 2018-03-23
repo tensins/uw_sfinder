@@ -1,12 +1,16 @@
-<header class="navbar navbar-fixed-top topbar row">
-	<div class="row">
-		<div style="background: #001f3f;" class="col-lg-2">
-			<h1  id="logo">UW Sfinder</h1>
+<nav class="navbar navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-3">
+				<%=link_to "UWS", root_path, class:'btn btn-primary', id:"logo"%>
+			</div>
+			<div class="col-xs-9">
+				<%= form_tag('/find', method: 'get') do %>
+					<%= text_field_tag(:building, nil, id:"search-form", class:"form-control", placeholder:"Enter a building eg. MC, PHY", autocomplete: 'off') %>
+				<% end %>
+
+			<div>
 		</div>
-		<div class="col-md-9" style="height:100%;">
-			<%= form_tag('/find', method: 'get') do %>
-				<%= text_field_tag(:building, nil, class:"form-control my-form", placeholder:"Enter a room or building eg. MC, PHY 145") %>
-			<% end %>
-		<div>
 	</div>
-</header>
+</nav>
+

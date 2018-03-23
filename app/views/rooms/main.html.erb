@@ -1,0 +1,12 @@
+<div id="main" class="container">
+	<div style="margin:auto;margin-left:50px;" class="row">
+		<% @buildings.each do |building|%>
+			<a class="building-buttons" href=<%="/find?building=#{building['building']}"%>>
+				<div class=" square btn btn-lg btn-primary">
+					<div style="margin-top:90px;"><%= building["building"] %>
+					</div>
+				</div>
+			</a>
+		<% end %>
+	</div>
+</div>

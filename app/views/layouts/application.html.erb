@@ -7,12 +7,12 @@
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Quicksand' %>
   <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Amatic+SC' %>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=0.3">
 </head>
 <body>
-	<%=render 'layouts/header'%>
-	<div id="main" class="container">
-   <%= yield %>
-  </div>
+  <%= render 'layouts/header' %>
+  <%= yield %>
 </body>
 </html>
