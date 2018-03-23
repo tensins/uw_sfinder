@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
     @inp = params[:building].upcase
     
     # gets the rooms for this building and as well as if they are vacant or not
-    @curr_time = toronto_time(Time.new(2018,3,9,17,21,0))
+    @curr_time = toronto_time(Time.now())
     rooms, @vacancy = get_rooms(@inp, @curr_time)
     @vacant_rooms = []
     for i in 0...@vacancy.length
