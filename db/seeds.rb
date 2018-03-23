@@ -27,14 +27,9 @@ end
 
 all_rooms = Hash.new()
 
-i = 0
 all_courses = ((HTTParty.get("https://api.uwaterloo.ca/v2/terms/#{current_term}/\
 courses.json?key=#{apikey}")).parsed_response)["data"]
 all_courses.each do |course|
-	if i == 100
-		break
-	end
-	i += 1
 	# get schedule for the course this term
 	puts("https://api.uwaterloo.ca/v2/terms/#{current_term}/\
 #{course['subject']}/#{course['catalog_number']}/schedule.json?key=#{apikey}")
